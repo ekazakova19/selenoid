@@ -1,0 +1,41 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.Random;
+
+public class Habr03Test {
+
+    private WebDriver driver;
+    private MainPage mainPage;
+
+    @Before
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        mainPage = new MainPage(driver);
+//        DesiredCapabilities capabilities = new DesiredCapabilities(); capabilities.setBrowserName("chrome"); 
+//        capabilities.setVersion("80.0"); capabilities.setCapability("enableVNC", true); 
+//        capabilities.setCapability("enableVideo", false); 
+        //driver = new RemoteWebDriver(     new URL("http://0.0.0.0:4444/wd/hub"));
+
+    }
+
+    @Test
+    public void test() {
+        mainPage.openMainPage();
+        mainPage.cliclElHubs();
+        mainPage.assertThatHubsPageOpened();
+        System.out.println("Open hub page test id= " + new Random().nextInt());
+    }
+
+    @After
+    public void closeDriver(){
+        if(driver!=null){
+            driver.quit();
+        }
+    }
+}
