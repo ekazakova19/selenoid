@@ -55,7 +55,6 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
-                    <!--methods not work-->
                     <parallel>classes</parallel>
                     <threadCount>3</threadCount>
                     <perCoreThreadCount>false</perCoreThreadCount>
